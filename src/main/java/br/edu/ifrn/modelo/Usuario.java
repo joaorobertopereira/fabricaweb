@@ -1,5 +1,7 @@
 package br.edu.ifrn.modelo;
 
+import jdk.nashorn.internal.objects.NativeString;
+
 public class Usuario {
 	private Integer id;
 	private String nome;
@@ -11,6 +13,11 @@ public class Usuario {
 	public Integer getId() {
 		return id;
 	}
+
+    @Override
+    public String toString() {
+        return "Usuario { " + "id= " + id + ", nome= " + nome.trim() + ", login= " + login.trim() + ", senha= " + senha.trim() + '}';
+    }
 	/**
 	 * @param id the id to set
 	 */
