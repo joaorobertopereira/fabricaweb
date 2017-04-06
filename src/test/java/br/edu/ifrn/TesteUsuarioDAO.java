@@ -6,12 +6,12 @@ import java.util.List;
 
 public class TesteUsuarioDAO {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ClassNotFoundException {
        testaAutenticaUsuario();
         
     }
 
-    public static void testeInserir() {
+    public static void testeInserir() throws ClassNotFoundException {
         Usuario usuario = new Usuario();
 
         usuario.setNome("José da Silva");
@@ -22,7 +22,7 @@ public class TesteUsuarioDAO {
         usuarioDAO.Inserir(usuario);
     }
     
-    public static void testeAlterar() {
+    public static void testeAlterar() throws ClassNotFoundException {
         Usuario usuario = new Usuario();
         
         usuario.setId(3);
@@ -34,7 +34,7 @@ public class TesteUsuarioDAO {
         usuarioDAO.Alterar(usuario);
     }
 
-    public static void testeDeletar() {
+    public static void testeDeletar() throws ClassNotFoundException {
         Usuario usuario = new Usuario();
         
         usuario.setId(13);
@@ -43,7 +43,7 @@ public class TesteUsuarioDAO {
         usuarioDAO.Deletar(usuario);
     }
     
-    public static void testeSalvar(){
+    public static void testeSalvar() throws ClassNotFoundException{
        Usuario usuario = new Usuario();
         
        // usuario.setId(10);
@@ -55,13 +55,13 @@ public class TesteUsuarioDAO {
         usuarioDAO.Salvar(usuario); 
     }
 
-    private static void testeBuscaPorId(int id) {
+    private static void testeBuscaPorId(int id) throws ClassNotFoundException {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         Usuario usuario = usuarioDAO.buscaPorId(id);
         System.out.println(usuario.toString());
     }
 
-    private static void testeBuscarTodos() {
+    private static void testeBuscarTodos() throws ClassNotFoundException {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         List<Usuario> lista = usuarioDAO.buscaTodos();
         for( Usuario u: lista){
@@ -70,7 +70,7 @@ public class TesteUsuarioDAO {
         
     }
 
-    private static void testaAutenticaUsuario() {
+    private static void testaAutenticaUsuario() throws ClassNotFoundException {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         Usuario usuario = new Usuario();
         usuario.setLogin("maria.silva");

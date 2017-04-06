@@ -16,7 +16,7 @@ public class UsuarioDAO {
     private final Connection conexao = ConexaoFactory.getConnection();
 
     public void Inserir(Usuario usuario) {
-        if (usuario.getId() == null) {
+        if (usuario.getId() == null || usuario.getId() == 0 ) {
             String SQL = "INSERT INTO USUARIO (nome,login,senha) VALUES (?,?,?)";
             try {
                 try (PreparedStatement Query = conexao.prepareStatement(SQL)) {
@@ -106,12 +106,8 @@ public class UsuarioDAO {
     }
 
     public void Salvar(Usuario usuario) {
-        if (usuario.getId() != null) {
-            if (VerificaUsuario(usuario)) {
-                Alterar(usuario);
-            } else {
-                Inserir(usuario);
-            }
+        if (usuario.getId() != null && usuario.getId() != 0) {
+            Alterar(usuario);
         } else {
             Inserir(usuario);
         }
