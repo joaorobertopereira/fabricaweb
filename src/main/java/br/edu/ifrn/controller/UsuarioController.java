@@ -64,7 +64,7 @@ public class UsuarioController extends HttpServlet {
             usuario.setLogin("");
             usuario.setSenha("");
             req.setAttribute("usuario", usuario);
-            
+
             RequestDispatcher Dispatcher = req.getRequestDispatcher("WEB-INF/salvarUsuario.jsp");
             Dispatcher.forward(req, resp);
 

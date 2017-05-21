@@ -14,7 +14,7 @@ public class TesteUsuarioDAO {
     public static void testeInserir() throws ClassNotFoundException {
         Usuario usuario = new Usuario();
 
-        usuario.setNome("JosÃ© da Silva");
+        usuario.setNome("José da Silva");
         usuario.setLogin("jose");
         usuario.setSenha("123456");
 
@@ -26,7 +26,7 @@ public class TesteUsuarioDAO {
         Usuario usuario = new Usuario();
         
         usuario.setId(3);
-        usuario.setNome("JosÃ© da Silva Santos");
+        usuario.setNome("José da Silva Santos");
         usuario.setLogin("jose");
         usuario.setSenha("senhanova");
 
@@ -64,9 +64,9 @@ public class TesteUsuarioDAO {
     private static void testeBuscarTodos() throws ClassNotFoundException {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         List<Usuario> lista = usuarioDAO.buscaTodos();
-        for( Usuario u: lista){
+        lista.forEach((u) -> {
             System.out.println(u.toString());
-        }
+        });
         
     }
 
@@ -76,10 +76,10 @@ public class TesteUsuarioDAO {
         usuario.setLogin("maria.silva");
         usuario.setSenha("123456");
         
-        if (usuarioDAO.AutenticaUsuario(usuario)){
-            System.out.println("Usuario Autenticado.");
-        } else {
+        if (!usuarioDAO.AutenticaUsuario(usuario)){
             System.out.println("Usuario Nao Localizado.");
+        } else {
+            System.out.println("Usuario Autenticado.");
         }
     }
     

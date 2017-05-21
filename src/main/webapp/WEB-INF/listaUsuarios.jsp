@@ -23,6 +23,7 @@
         </script>
     </head>
     <body>
+        <%@include file="menu.jsp" %>
         <div class="uk-container">
             <%List<Usuario> listaUsuarios = (List<Usuario>) request.getAttribute("listar");%>
 

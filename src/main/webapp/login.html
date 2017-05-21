@@ -18,15 +18,15 @@
 
                 <img class="uk-margin-bottom" width="140" height="120" src="" alt="">
 
-                <form class="uk-panel uk-panel-box uk-form">
+                <form class="uk-panel uk-panel-box uk-form" method="POST" action="autenticador.do" >
                     <div class="uk-form-row">
-                        <input class="uk-width-1-1 uk-form-large" type="text" placeholder="Login">
+                        <input class="uk-width-1-1 uk-form-large" name="login" type="text" placeholder="Login">
                     </div>
                     <div class="uk-form-row">
-                        <input class="uk-width-1-1 uk-form-large" type="text" placeholder="Senha">
+                        <input class="uk-width-1-1 uk-form-large" name="senha" type="password" placeholder="Senha">
                     </div>
                     <div class="uk-form-row">
-                        <a class="uk-width-1-1 uk-button uk-button-primary uk-button-large" href="#">Login</a>
+                        <input class="uk-width-1-1 uk-button uk-button-primary uk-button-large" type="submit" value="Autenticar">
                     </div>
                     <div class="uk-form-row uk-text-small">
                         <label class="uk-float-left"><input type="checkbox"> Lembrar</label>

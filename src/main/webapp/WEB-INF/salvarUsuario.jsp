@@ -13,6 +13,7 @@
 
     </head>
     <body>
+        <%@include file="menu.jsp" %>
         <% Usuario usuario = (Usuario)request.getAttribute("usuario");%>
         <div id="salvar" class="uk-modal">
             <div class="uk-modal-dialog">

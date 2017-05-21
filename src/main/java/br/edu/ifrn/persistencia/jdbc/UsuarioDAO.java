@@ -17,7 +17,7 @@ public class UsuarioDAO {
 
     public void Inserir(Usuario usuario) {
         if (usuario.getId() == null || usuario.getId() == 0 ) {
-            String SQL = "INSERT INTO USUARIO (nome,login,senha) VALUES (?,?,?)";
+            String SQL = "INSERT INTO USUARIO (nome,login,senha) VALUES (?,?,MD5(?))";
             try {
                 try (PreparedStatement Query = conexao.prepareStatement(SQL)) {
                     Query.setString(1, usuario.getNome());
@@ -33,7 +33,7 @@ public class UsuarioDAO {
             }
 
         } else {
-            String SQL = "INSERT INTO USUARIO (id,nome,login,senha) VALUES (?,?,?,?)";
+            String SQL = "INSERT INTO USUARIO (id,nome,login,senha) VALUES (?,?,?,MD5(?))";
             try {
                 try (PreparedStatement Query = conexao.prepareStatement(SQL)) {
                     Query.setInt(1, usuario.getId());
@@ -53,7 +53,7 @@ public class UsuarioDAO {
     }
 
     public void Alterar(Usuario usuario) {
-        String SQL = "UPDATE USUARIO SET nome=?,login=?,senha=? WHERE id = ?";
+        String SQL = "UPDATE USUARIO SET nome=?,login=?,senha=MD5(?) WHERE id = ?";
         try {
             try (PreparedStatement Query = conexao.prepareStatement(SQL)) {
                 Query.setString(1, usuario.getNome());
@@ -161,26 +161,29 @@ public class UsuarioDAO {
         return lista;
     }
 
-    public boolean AutenticaUsuario(Usuario usuario) {
-        String SQL = "SELECT login,senha FROM USUARIO WHERE (login = ? and senha = ?)";
-        Boolean retorno = false;
+    public Usuario AutenticaUsuario(Usuario usuario) {
+        String SQL = "SELECT * FROM USUARIO WHERE login = ? and senha = MD5(?)";
+        Usuario usuarioAutenticado = null;
         try {
             try (PreparedStatement Query = conexao.prepareStatement(SQL)) {
                 Query.setString(1, usuario.getLogin());
                 Query.setString(2, usuario.getSenha());
                 // Executa SQL
-                ResultSet resultSet = Query.executeQuery();
+                ResultSet resultado = Query.executeQuery();
 
-                retorno = resultSet.next();
+                if (resultado.next()) {
+                    usuarioAutenticado = new Usuario();
+                    usuarioAutenticado.setId(resultado.getInt("id"));
+                    usuarioAutenticado.setNome(resultado.getString("nome"));
+                    usuarioAutenticado.setLogin(resultado.getString("login"));
+                    usuarioAutenticado.setSenha(resultado.getString("senha"));
+                }
             }
 
         } catch (SQLException ex) {
-            
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return retorno;
-            
         }
-        return retorno;
+        return usuarioAutenticado;        
     }
 
 }
